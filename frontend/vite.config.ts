@@ -1,5 +1,6 @@
 import react, { reactCompilerPreset } from '@vitejs/plugin-react'
 import babel from '@rolldown/plugin-babel'
+import path from 'path'
 
 import { defineConfig } from 'vite'
 import { tanstackRouter } from '@tanstack/router-plugin/vite'
@@ -13,5 +14,19 @@ export default defineConfig({
     }),
     react(),
     babel({ presets: [reactCompilerPreset()] })
-  ]
+  ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src')
+    }
+  },
+  build: {
+    rolldownOptions: {
+      output: {
+        entryFileNames: 'assets/[hash].js',
+        chunkFileNames: 'assets/[hash].js',
+        assetFileNames: 'assets/[hash].[ext]'
+      }
+    }
+  }
 })
