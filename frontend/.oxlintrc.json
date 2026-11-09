@@ -3,8 +3,18 @@
   "plugins": ["react", "typescript", "oxc"],
   "rules": {
     "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }],
-
+    "react/only-export-components": [
+      "warn",
+      {
+        "allowConstantExport": true,
+        "customHOCs": [
+          "createFileRoute",
+          "createRootRoute",
+          "createRootRouteWithContext",
+          "createLazyFileRoute"
+        ]
+      }
+    ],
     "typescript/no-explicit-any": "error",
     "typescript/no-unsafe-function-type": "error",
     "typescript/explicit-function-return-type": "error",
