@@ -1,3 +1,7 @@
+export function toDate(iso: string): Date
+export function toDate(iso: null): null
+export function toDate(iso: string | null): Date | null
+
 /**
  * Returns a Date object from an ISO string, or null if the input is falsy.
  * 
