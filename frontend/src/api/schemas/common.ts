@@ -1,5 +1,11 @@
 import { z } from 'zod'
 
+export const voidSchema = z
+  .undefined()
+  .or(z.null())
+  .or(z.literal(''))
+  .transform(() => undefined)
+
 export const addressSchema = z
   .object({
     city: z.string(),
@@ -15,5 +21,7 @@ export const addressSchema = z
     number: v.number,
     zipCode: v.zip_code
   }))
+
+export type Void = z.infer<typeof voidSchema>
 
 export type Address = z.infer<typeof addressSchema>
