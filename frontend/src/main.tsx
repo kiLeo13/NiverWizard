@@ -16,8 +16,26 @@ declare module '@tanstack/react-router' {
   }
 }
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>
-)
+async function enableMocking() {
+  if (!import.meta.env.DEV) return
+
+  const { worker } = await import('./api/mocks/browser')
+
+  await worker.start({
+    onUnhandledFrame: 'warn'
+  })
+}
+
+async function bootstrap() {
+  await enableMocking()
+
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      <RouterProvider router={router} />
+    </StrictMode>
+  )
+}
+
+bootstrap().catch((error) => {
+  console.error('Failed to bootstrap application:', error)
+})
