@@ -16,7 +16,6 @@ import { Route as NamespaceEventIdRouteImport } from './routes/$namespace/$event
 import { Route as NamespaceEventIdIndexRouteImport } from './routes/$namespace/$eventId/index'
 import { Route as NamespaceEventIdGalleryRouteImport } from './routes/$namespace/$eventId/gallery'
 import { Route as NamespaceEventIdPlaylistRouteImport } from './routes/$namespace/$eventId/playlist'
-import { Route as NamespaceEventIdPollsRouteImport } from './routes/$namespace/$eventId/polls'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -54,11 +53,6 @@ const NamespaceEventIdPlaylistRoute =
     path: '/playlist',
     getParentRoute: () => NamespaceEventIdRoute,
   } as any)
-const NamespaceEventIdPollsRoute = NamespaceEventIdPollsRouteImport.update({
-  id: '/polls',
-  path: '/polls',
-  getParentRoute: () => NamespaceEventIdRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -67,7 +61,6 @@ export interface FileRoutesByFullPath {
   '/$namespace/': typeof NamespaceIndexRoute
   '/$namespace/$eventId/gallery': typeof NamespaceEventIdGalleryRoute
   '/$namespace/$eventId/playlist': typeof NamespaceEventIdPlaylistRoute
-  '/$namespace/$eventId/polls': typeof NamespaceEventIdPollsRoute
   '/$namespace/$eventId/': typeof NamespaceEventIdIndexRoute
 }
 export interface FileRoutesByTo {
@@ -75,7 +68,6 @@ export interface FileRoutesByTo {
   '/$namespace': typeof NamespaceIndexRoute
   '/$namespace/$eventId/gallery': typeof NamespaceEventIdGalleryRoute
   '/$namespace/$eventId/playlist': typeof NamespaceEventIdPlaylistRoute
-  '/$namespace/$eventId/polls': typeof NamespaceEventIdPollsRoute
   '/$namespace/$eventId': typeof NamespaceEventIdIndexRoute
 }
 export interface FileRoutesById {
@@ -86,7 +78,6 @@ export interface FileRoutesById {
   '/$namespace/': typeof NamespaceIndexRoute
   '/$namespace/$eventId/gallery': typeof NamespaceEventIdGalleryRoute
   '/$namespace/$eventId/playlist': typeof NamespaceEventIdPlaylistRoute
-  '/$namespace/$eventId/polls': typeof NamespaceEventIdPollsRoute
   '/$namespace/$eventId/': typeof NamespaceEventIdIndexRoute
 }
 export interface FileRouteTypes {
@@ -98,7 +89,6 @@ export interface FileRouteTypes {
     | '/$namespace/'
     | '/$namespace/$eventId/gallery'
     | '/$namespace/$eventId/playlist'
-    | '/$namespace/$eventId/polls'
     | '/$namespace/$eventId/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -106,7 +96,6 @@ export interface FileRouteTypes {
     | '/$namespace'
     | '/$namespace/$eventId/gallery'
     | '/$namespace/$eventId/playlist'
-    | '/$namespace/$eventId/polls'
     | '/$namespace/$eventId'
   id:
     | '__root__'
@@ -116,7 +105,6 @@ export interface FileRouteTypes {
     | '/$namespace/'
     | '/$namespace/$eventId/gallery'
     | '/$namespace/$eventId/playlist'
-    | '/$namespace/$eventId/polls'
     | '/$namespace/$eventId/'
   fileRoutesById: FileRoutesById
 }
@@ -176,27 +164,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NamespaceEventIdPlaylistRouteImport
       parentRoute: typeof NamespaceEventIdRoute
     }
-    '/$namespace/$eventId/polls': {
-      id: '/$namespace/$eventId/polls'
-      path: '/polls'
-      fullPath: '/$namespace/$eventId/polls'
-      preLoaderRoute: typeof NamespaceEventIdPollsRouteImport
-      parentRoute: typeof NamespaceEventIdRoute
-    }
   }
 }
 
 interface NamespaceEventIdRouteChildren {
   NamespaceEventIdGalleryRoute: typeof NamespaceEventIdGalleryRoute
   NamespaceEventIdPlaylistRoute: typeof NamespaceEventIdPlaylistRoute
-  NamespaceEventIdPollsRoute: typeof NamespaceEventIdPollsRoute
   NamespaceEventIdIndexRoute: typeof NamespaceEventIdIndexRoute
 }
 
 const NamespaceEventIdRouteChildren: NamespaceEventIdRouteChildren = {
   NamespaceEventIdGalleryRoute: NamespaceEventIdGalleryRoute,
   NamespaceEventIdPlaylistRoute: NamespaceEventIdPlaylistRoute,
-  NamespaceEventIdPollsRoute: NamespaceEventIdPollsRoute,
   NamespaceEventIdIndexRoute: NamespaceEventIdIndexRoute,
 }
 
