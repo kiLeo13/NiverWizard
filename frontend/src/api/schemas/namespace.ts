@@ -1,20 +1,11 @@
 import { z } from 'zod'
-import { toDate } from '@/utils/timeUtils'
 
-export const namespaceResponseSchema = z
-  .object({
-    id: z.string(),
-    slug: z.string(),
-    owner_id: z.string(),
-    created_at: z.iso.datetime(),
-    updated_at: z.iso.datetime()
-  })
-  .transform((v) => ({
-    id: v.id,
-    slug: v.slug,
-    ownerId: v.owner_id,
-    createdAt: toDate(v.created_at),
-    updatedAt: toDate(v.updated_at)
-  }))
+export const namespaceResponseSchema = z.object({
+  id: z.string(),
+  slug: z.string(),
+  ownerId: z.string(),
+  createdAt: z.iso.datetime(),
+  updatedAt: z.iso.datetime()
+})
 
 export type NamespaceResponse = z.infer<typeof namespaceResponseSchema>
