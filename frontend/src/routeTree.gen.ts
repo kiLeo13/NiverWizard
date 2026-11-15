@@ -15,6 +15,7 @@ import { Route as NamespaceIndexRouteImport } from './routes/$namespace/index'
 import { Route as NamespaceEventIdRouteImport } from './routes/$namespace/$eventId'
 import { Route as NamespaceEventIdIndexRouteImport } from './routes/$namespace/$eventId/index'
 import { Route as NamespaceEventIdGalleryRouteImport } from './routes/$namespace/$eventId/gallery'
+import { Route as NamespaceEventIdLocationRouteImport } from './routes/$namespace/$eventId/location'
 import { Route as NamespaceEventIdPlaylistRouteImport } from './routes/$namespace/$eventId/playlist'
 
 const IndexRoute = IndexRouteImport.update({
@@ -47,6 +48,12 @@ const NamespaceEventIdGalleryRoute = NamespaceEventIdGalleryRouteImport.update({
   path: '/gallery',
   getParentRoute: () => NamespaceEventIdRoute,
 } as any)
+const NamespaceEventIdLocationRoute =
+  NamespaceEventIdLocationRouteImport.update({
+    id: '/location',
+    path: '/location',
+    getParentRoute: () => NamespaceEventIdRoute,
+  } as any)
 const NamespaceEventIdPlaylistRoute =
   NamespaceEventIdPlaylistRouteImport.update({
     id: '/playlist',
@@ -60,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/$namespace/$eventId': typeof NamespaceEventIdRouteWithChildren
   '/$namespace/': typeof NamespaceIndexRoute
   '/$namespace/$eventId/gallery': typeof NamespaceEventIdGalleryRoute
+  '/$namespace/$eventId/location': typeof NamespaceEventIdLocationRoute
   '/$namespace/$eventId/playlist': typeof NamespaceEventIdPlaylistRoute
   '/$namespace/$eventId/': typeof NamespaceEventIdIndexRoute
 }
@@ -67,6 +75,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$namespace': typeof NamespaceIndexRoute
   '/$namespace/$eventId/gallery': typeof NamespaceEventIdGalleryRoute
+  '/$namespace/$eventId/location': typeof NamespaceEventIdLocationRoute
   '/$namespace/$eventId/playlist': typeof NamespaceEventIdPlaylistRoute
   '/$namespace/$eventId': typeof NamespaceEventIdIndexRoute
 }
@@ -77,6 +86,7 @@ export interface FileRoutesById {
   '/$namespace/$eventId': typeof NamespaceEventIdRouteWithChildren
   '/$namespace/': typeof NamespaceIndexRoute
   '/$namespace/$eventId/gallery': typeof NamespaceEventIdGalleryRoute
+  '/$namespace/$eventId/location': typeof NamespaceEventIdLocationRoute
   '/$namespace/$eventId/playlist': typeof NamespaceEventIdPlaylistRoute
   '/$namespace/$eventId/': typeof NamespaceEventIdIndexRoute
 }
@@ -88,6 +98,7 @@ export interface FileRouteTypes {
     | '/$namespace/$eventId'
     | '/$namespace/'
     | '/$namespace/$eventId/gallery'
+    | '/$namespace/$eventId/location'
     | '/$namespace/$eventId/playlist'
     | '/$namespace/$eventId/'
   fileRoutesByTo: FileRoutesByTo
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/$namespace'
     | '/$namespace/$eventId/gallery'
+    | '/$namespace/$eventId/location'
     | '/$namespace/$eventId/playlist'
     | '/$namespace/$eventId'
   id:
@@ -104,6 +116,7 @@ export interface FileRouteTypes {
     | '/$namespace/$eventId'
     | '/$namespace/'
     | '/$namespace/$eventId/gallery'
+    | '/$namespace/$eventId/location'
     | '/$namespace/$eventId/playlist'
     | '/$namespace/$eventId/'
   fileRoutesById: FileRoutesById
@@ -157,6 +170,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NamespaceEventIdGalleryRouteImport
       parentRoute: typeof NamespaceEventIdRoute
     }
+    '/$namespace/$eventId/location': {
+      id: '/$namespace/$eventId/location'
+      path: '/location'
+      fullPath: '/$namespace/$eventId/location'
+      preLoaderRoute: typeof NamespaceEventIdLocationRouteImport
+      parentRoute: typeof NamespaceEventIdRoute
+    }
     '/$namespace/$eventId/playlist': {
       id: '/$namespace/$eventId/playlist'
       path: '/playlist'
@@ -169,12 +189,14 @@ declare module '@tanstack/react-router' {
 
 interface NamespaceEventIdRouteChildren {
   NamespaceEventIdGalleryRoute: typeof NamespaceEventIdGalleryRoute
+  NamespaceEventIdLocationRoute: typeof NamespaceEventIdLocationRoute
   NamespaceEventIdPlaylistRoute: typeof NamespaceEventIdPlaylistRoute
   NamespaceEventIdIndexRoute: typeof NamespaceEventIdIndexRoute
 }
 
 const NamespaceEventIdRouteChildren: NamespaceEventIdRouteChildren = {
   NamespaceEventIdGalleryRoute: NamespaceEventIdGalleryRoute,
+  NamespaceEventIdLocationRoute: NamespaceEventIdLocationRoute,
   NamespaceEventIdPlaylistRoute: NamespaceEventIdPlaylistRoute,
   NamespaceEventIdIndexRoute: NamespaceEventIdIndexRoute,
 }
