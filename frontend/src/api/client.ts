@@ -46,8 +46,10 @@ apiClient.interceptors.response.use(
 
       return Promise.reject(
         new ApiError(status, {
-          code: 'UNKNOWN_ERROR',
-          message: error.message
+          errors: {
+            code: 'UNKNOWN',
+            message: error.message
+          }
         })
       )
     }
