@@ -15,7 +15,7 @@ export const userService = {
   }
 }
 
-export const eventQueries = {
+export const userQueries = {
   getById: (userId: string) =>
     queryOptions({
       queryKey: userKeys.byId(userId),
