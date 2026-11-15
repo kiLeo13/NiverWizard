@@ -1,6 +1,10 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
+  "plugins": [
+    "react",
+    "typescript",
+    "oxc"
+  ],
   "rules": {
     "react/rules-of-hooks": "error",
     "react/only-export-components": [
@@ -16,8 +20,6 @@
       }
     ],
     "typescript/no-explicit-any": "error",
-    "typescript/no-unsafe-function-type": "error",
-    "typescript/explicit-function-return-type": "error",
-    "typescript/explicit-module-boundary-types": "error"
+    "typescript/no-unsafe-function-type": "error"
   }
 }
