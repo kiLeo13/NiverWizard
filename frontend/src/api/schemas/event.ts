@@ -16,7 +16,10 @@ export const eventResponseSchema = z
     name: z.string(),
     overview: z.string().nullable(),
     banner_url: z.url().nullable(),
-    accent_color: z.string().regex(/^#[0-9a-fA-F]{6}$/).nullable(),
+    accent_color: z
+      .string()
+      .regex(/^#[0-9a-fA-F]{6}$/)
+      .nullable(),
     playlist: playlistResponseSchema.nullable(),
     starts_at: z.iso.datetime(),
     rsvp_deadline: z.iso.datetime().nullable(),
@@ -43,4 +46,27 @@ export const eventResponseSchema = z
     userRole: v.user_role
   }))
 
+const eventSummaryResponseSchema = z
+  .object({
+    id: z.string(),
+    name: z.string(),
+    created_at: z.iso.datetime()
+  })
+  .transform((v) => ({
+    id: v.id,
+    name: v.name,
+    createdAt: toDate(v.created_at)
+  }))
+
+export const listEventsResponseSchema = z
+  .object({
+    partial_events: z.array(eventSummaryResponseSchema),
+    has_more: z.boolean()
+  })
+  .transform((v) => ({
+    partialEvents: v.partial_events,
+    hasMore: v.has_more
+  }))
+
 export type EventResponse = z.infer<typeof eventResponseSchema>
+export type ListEventsResponse = z.infer<typeof listEventsResponseSchema>

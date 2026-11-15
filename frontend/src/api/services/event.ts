@@ -1,17 +1,19 @@
-import type { ApiError } from '../errors'
-
 import apiClient from '../client'
 
-import { z } from 'zod'
 import { queryOptions } from '@tanstack/react-query'
-import { eventResponseSchema, type EventResponse } from '../schemas/event'
+import {
+  eventResponseSchema,
+  listEventsResponseSchema,
+  type EventResponse,
+  type ListEventsResponse
+} from '../schemas/event'
 
 export const eventKeys = {
   all: ['events'] as const,
-  lists: () => [...eventKeys.all, 'list'] as const,
-  list: (namespace: string) => [...eventKeys.lists(), namespace] as const,
-  details: () => [...eventKeys.all, 'detail'] as const,
-  detail: (eventId: string) => [...eventKeys.details(), eventId] as const
+  byNamespace: (namespace: string) => [...eventKeys.all, namespace] as const,
+  list: (namespace: string) => [...eventKeys.byNamespace(namespace), 'list'] as const,
+  detail: (namespace: string, eventId: string) =>
+    [...eventKeys.byNamespace(namespace), 'detail', eventId] as const
 }
 
 export const eventService = {
@@ -20,27 +22,20 @@ export const eventService = {
     return eventResponseSchema.parse(resp.data)
   },
 
-  getEventsByNamespace: async (namespace: string): Promise<EventResponse[]> => {
+  getEventsByNamespace: async (namespace: string): Promise<ListEventsResponse> => {
     const resp = await apiClient.get(`/namespaces/${namespace}/events`)
-    return z.array(eventResponseSchema).parse(resp.data)
+    return listEventsResponseSchema.parse(resp.data)
   }
 }
 
-type EventDetailOptions = ReturnType<
-  typeof queryOptions<EventResponse, ApiError, EventResponse, ReturnType<typeof eventKeys.detail>>
->
-type EventListOptions = ReturnType<
-  typeof queryOptions<EventResponse[], ApiError, EventResponse[], ReturnType<typeof eventKeys.list>>
->
-
 export const eventQueries = {
-  detail: (namespace: string, eventId: string): EventDetailOptions =>
+  detail: (namespace: string, eventId: string) =>
     queryOptions({
-      queryKey: eventKeys.detail(eventId),
+      queryKey: eventKeys.detail(namespace, eventId),
       queryFn: () => eventService.getEvent(namespace, eventId)
     }),
 
-  listByNamespace: (namespace: string): EventListOptions =>
+  listByNamespace: (namespace: string) =>
     queryOptions({
       queryKey: eventKeys.list(namespace),
       queryFn: () => eventService.getEventsByNamespace(namespace)
