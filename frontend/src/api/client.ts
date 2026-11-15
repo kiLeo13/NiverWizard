@@ -1,6 +1,7 @@
 import axios, { type InternalAxiosRequestConfig } from 'axios'
 
 import { ApiError, apiErrorPayloadSchema } from './errors'
+import { normalizeApiPayload } from './serialization/case'
 
 const AUTH_TOKEN_KEY = 'auth_token'
 
@@ -28,7 +29,10 @@ apiClient.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 // This runs AFTER a response is received
 // ----------------------------------------------------------------
 apiClient.interceptors.response.use(
-  (resp) => resp,
+  (resp) => {
+    resp.data = normalizeApiPayload(resp.data)
+    return resp
+  },
   (error) => {
     if (axios.isAxiosError(error) && error.response) {
       const { status, data } = error.response
@@ -39,7 +43,7 @@ apiClient.interceptors.response.use(
         window.location.href = '/login'
       }
 
-      const parseResult = apiErrorPayloadSchema.safeParse(data)
+      const parseResult = apiErrorPayloadSchema.safeParse(normalizeApiPayload(data))
       if (parseResult.success) {
         return Promise.reject(new ApiError(status, parseResult.data))
       }
