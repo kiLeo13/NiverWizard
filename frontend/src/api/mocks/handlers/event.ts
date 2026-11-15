@@ -10,8 +10,10 @@ export const eventHandlers = [
     const nspc = mockNamespaces.find((n) => n.slug === namespace)
     if (!nspc) {
       return respMocks.jsonError(404, {
-        code: 'NOT_FOUND',
-        message: 'Resource not found'
+        errors: {
+          code: 'NOT_FOUND',
+          message: 'Resource not found'
+        }
       })
     }
 
@@ -33,8 +35,10 @@ export const eventHandlers = [
     const event = mockEvents.find((e) => e.id === eventId)
     if (!event) {
       return respMocks.jsonError(404, {
-        code: 'NOT_FOUND',
-        message: 'Resource not found'
+        errors: {
+          code: 'NOT_FOUND',
+          message: 'Resource not found'
+        }
       })
     }
 
