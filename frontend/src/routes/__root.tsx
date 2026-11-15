@@ -1,7 +1,7 @@
 import type { JSX } from 'react/jsx-runtime'
 import type { QueryClient } from '@tanstack/react-query'
 
-import { createRootRouteWithContext, Outlet } from '@tanstack/react-router'
+import { createRootRouteWithContext, HeadContent, Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 
 interface RouterContext {
@@ -15,8 +15,8 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 function RootLayout(): JSX.Element {
   return (
     <>
+      <HeadContent />
       <Outlet />
-
       {import.meta.env.DEV && <TanStackRouterDevtools />}
     </>
   )
