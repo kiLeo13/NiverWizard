@@ -3,7 +3,7 @@ import { mockEvents } from '../data/events'
 import { respMocks } from './respUtils'
 
 export const eventHandlers = [
-  http.get('*/namespaces/:namespaceId/events', ({ params }) => {
+  http.get('*/api/namespaces/:namespaceId/events', ({ params }) => {
     const { namespaceId } = params
 
     const events = mockEvents.filter((e) => e.namespaceId === namespaceId)
@@ -11,7 +11,7 @@ export const eventHandlers = [
     return HttpResponse.json(events)
   }),
 
-  http.get('*/namespaces/:namespaceId/events/:eventId', ({ params }) => {
+  http.get('*/api/namespaces/:namespaceId/events/:eventId', ({ params }) => {
     const { eventId } = params
 
     const event = mockEvents.find((e) => e.id === eventId)
