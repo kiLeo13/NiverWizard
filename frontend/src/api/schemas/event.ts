@@ -4,7 +4,7 @@ import { eventRoleSchema } from './event-member'
 // ---------- API Contracts ----------
 const playlistProviderSchema = z.enum(['spotify', 'deezer', 'applemusic'])
 
-const playlistResponseSchema = z.object({
+export const playlistResponseSchema = z.object({
   provider: playlistProviderSchema,
   url: z.url()
 })
@@ -41,5 +41,6 @@ export const listEventsResponseSchema = z.object({
 })
 
 // ---------- Type Exports ----------
+export type PlaylistResponse = z.infer<typeof playlistResponseSchema>
 export type EventResponse = z.infer<typeof eventResponseSchema>
 export type ListEventsResponse = z.infer<typeof listEventsResponseSchema>
