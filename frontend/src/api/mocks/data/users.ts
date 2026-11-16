@@ -11,7 +11,7 @@ export const mockUsers: UserResponse[] = [
   },
   {
     id: '2',
-    bio: 'Estou cansado',
+    bio: 'Estou cansada',
     username: 'Maria',
     displayName: '',
     createdAt: new Date(2026, 10, 1, 21, 15, 0).toISOString(),
