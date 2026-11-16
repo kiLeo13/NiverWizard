@@ -1,10 +1,11 @@
-import { http, HttpResponse } from 'msw'
+import { delay, http, HttpResponse } from 'msw'
 import { mockNamespaces } from '../data/namespaces'
 import { respMocks } from './respUtils'
 
 export const namespaceHandlers = [
   http.get('*/api/namespaces/:slug', ({ params }) => {
     const { slug } = params
+    delay(250)
 
     const data = mockNamespaces.find((n) => n.slug === slug)
     if (!data) {
