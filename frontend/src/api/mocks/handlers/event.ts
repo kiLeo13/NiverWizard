@@ -4,9 +4,9 @@ import { respMocks } from './respUtils'
 import { mockNamespaces } from '../data/namespaces'
 
 export const eventHandlers = [
-  http.get('*/api/namespaces/:namespace/events', ({ params }) => {
+  http.get('*/api/namespaces/:namespace/events', async ({ params }) => {
     const { namespace } = params
-    delay(250)
+    await delay(250)
 
     const nspc = mockNamespaces.find((n) => n.slug === namespace)
     if (!nspc) {
@@ -30,9 +30,9 @@ export const eventHandlers = [
     )
   }),
 
-  http.get('*/api/namespaces/:namespace/events/:eventId', ({ params }) => {
+  http.get('*/api/namespaces/:namespace/events/:eventId', async ({ params }) => {
     const { eventId } = params
-    delay(250)
+    await delay(250)
 
     const event = mockEvents.find((e) => e.id === eventId)
     if (!event) {

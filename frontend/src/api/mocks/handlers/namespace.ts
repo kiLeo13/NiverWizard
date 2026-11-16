@@ -3,9 +3,9 @@ import { mockNamespaces } from '../data/namespaces'
 import { respMocks } from './respUtils'
 
 export const namespaceHandlers = [
-  http.get('*/api/namespaces/:slug', ({ params }) => {
+  http.get('*/api/namespaces/:slug', async ({ params }) => {
     const { slug } = params
-    delay(250)
+    await delay(250)
 
     const data = mockNamespaces.find((n) => n.slug === slug)
     if (!data) {
