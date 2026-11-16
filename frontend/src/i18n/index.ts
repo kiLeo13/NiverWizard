@@ -25,7 +25,7 @@ export const i18nReady = i18n.use(initReactI18next).init({
   defaultNS,
   ns: ['common', 'events', 'namespaces'],
 
-  supportedLngs: ['ptbr'],
+  supportedLngs: ['pt-BR'],
   fallbackLng: false,
 
   interpolation: {
