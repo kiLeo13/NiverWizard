@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import styles from './GoogleSpinner.module.css'
 
 const DEFAULT_SIZE = 24
-const DEFAULT_COLOR = '#1a73e8'
+const DEFAULT_COLOR = '#7d64c0'
 const DEFAULT_STROKE_WIDTH = '10%'
 
 type GoogleSpinnerProps = {
