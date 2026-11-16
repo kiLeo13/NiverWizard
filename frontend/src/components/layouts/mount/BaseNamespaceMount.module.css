@@ -6,10 +6,3 @@
   box-sizing: border-box;
   background-color: var(--background-color);
 }
-
-.main {
-  flex: 1;
-  overflow-y: auto;
-  box-sizing: border-box;
-  background-color: var(--background-color);
-}

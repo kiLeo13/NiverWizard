@@ -1,7 +1,7 @@
 import type { JSX } from 'react/jsx-runtime'
 
 import { createFileRoute, Outlet } from '@tanstack/react-router'
-import { NamespaceLayout } from '@/components/layouts/NamespaceLayout'
+import { BaseNamespaceMount } from '@/components/layouts/mount/BaseNamespaceMount'
 
 export const Route = createFileRoute('/$namespace')({
   head: () => ({
@@ -14,8 +14,8 @@ function RouteComponent(): JSX.Element {
   const { namespace } = Route.useParams()
 
   return (
-    <NamespaceLayout namespace={namespace}>
+    <BaseNamespaceMount namespace={namespace}>
       <Outlet />
-    </NamespaceLayout>
+    </BaseNamespaceMount>
   )
 }

@@ -1,7 +1,7 @@
 import type { JSX } from 'react/jsx-dev-runtime'
 import type { UserResponse } from '@/api/schemas/user'
 
-import { GoogleSpinner } from '../ui/loaders/GoogleSpinner'
+import { GoogleSpinner } from '../../ui/loaders/GoogleSpinner'
 import { GiBalloonDog } from 'react-icons/gi'
 import { useTranslation } from 'react-i18next'
 

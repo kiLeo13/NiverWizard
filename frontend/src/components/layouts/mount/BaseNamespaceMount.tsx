@@ -5,14 +5,14 @@ import { useQuery } from '@tanstack/react-query'
 import { namespaceQueries } from '@/api/services/namespace'
 import { userQueries } from '@/api/services/user'
 
-import styles from './NamespaceLayout.module.css'
+import styles from './BaseNamespaceMount.module.css'
 
-interface NamespaceLayoutProps {
+interface BaseNamespaceMountProps {
   namespace: string
   children: ReactNode
 }
 
-export function NamespaceLayout({ namespace, children }: NamespaceLayoutProps): JSX.Element {
+export function BaseNamespaceMount({ namespace, children }: BaseNamespaceMountProps): JSX.Element {
   const { data: nspcData, isLoading: isNspcLoading } = useQuery(namespaceQueries.detail(namespace))
   const { data: ownerData, isLoading: isOwnerLoading } = useQuery({
     ...userQueries.getById(nspcData?.ownerId ?? ''),
@@ -23,7 +23,7 @@ export function NamespaceLayout({ namespace, children }: NamespaceLayoutProps): 
   return (
     <div className={styles.mount}>
       <NamespaceHeader owner={ownerData} isLoading={isLoading} />
-      <main className={styles.main}>{children}</main>
+      {children}
     </div>
   )
 }
