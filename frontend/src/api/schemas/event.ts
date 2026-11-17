@@ -11,7 +11,8 @@ export const playlistResponseSchema = z.object({
 
 export const eventResponseSchema = z.object({
   id: z.string(),
-  namespaceId: z.string(),
+  namespace: z.string(),
+  directory: z.string(),
   name: z.string(),
   overview: z.string().nullable(),
   bannerUrl: z.url().nullable(),
