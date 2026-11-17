@@ -15,11 +15,6 @@ export const eventResponseSchema = z.object({
   directory: z.string(),
   name: z.string(),
   overview: z.string().nullable(),
-  bannerUrl: z.url().nullable(),
-  accentColor: z
-    .string()
-    .regex(/^#[0-9a-fA-F]{6}$/)
-    .nullable(),
   playlist: playlistResponseSchema.nullable(),
   startsAt: z.iso.datetime(),
   rsvpDeadline: z.iso.datetime().nullable(),
