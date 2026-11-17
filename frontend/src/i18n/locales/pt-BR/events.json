@@ -1,1 +1,14 @@
-{}
+{
+  "sidebar": {
+    "details": {
+      "title": "Detalhes"
+    },
+    "actions": {
+      "title": "Interações",
+      "gallery": "Galeria",
+      "overview": "Visão Geral",
+      "location": "Localização",
+      "playlist": "Playlist"
+    }
+  }
+}
