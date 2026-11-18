@@ -1,6 +1,6 @@
 import type { JSX } from 'react/jsx-runtime'
 import type { ReactNode } from 'react'
-import type { EventResponse, PlaylistResponse } from '@/api/schemas/event'
+import type { PlaylistResponse } from '@/api/schemas/event'
 
 import { FiBox } from 'react-icons/fi'
 import { MdOutlinePhotoLibrary } from 'react-icons/md'
@@ -11,15 +11,20 @@ import { BsAppleMusic } from 'react-icons/bs'
 import { FaSpotify } from 'react-icons/fa'
 import { RiPlayList2Fill } from 'react-icons/ri'
 import { useTranslation } from 'react-i18next'
+import { useParams } from '@tanstack/react-router'
+import { useQuery } from '@tanstack/react-query'
+import { eventQueries } from '@/api/services/event'
 
 import styles from './Sidebar.module.css'
 
-type SidebarProps = {
-  event: EventResponse | null
-}
-
-export function Sidebar({ event }: SidebarProps): JSX.Element {
+export function Sidebar(): JSX.Element {
+  const { namespace, eventSlug } = useParams({ strict: false })
   const { t } = useTranslation('events')
+
+  const { data: eventData } = useQuery({
+    ...eventQueries.detail(namespace!, eventSlug!),
+    enabled: !!(namespace && eventSlug)
+  })
 
   return (
     <aside className={styles.container}>
@@ -45,7 +50,7 @@ export function Sidebar({ event }: SidebarProps): JSX.Element {
           <SidebarActionItem icon={<FaLocationDot />} label={t('sidebar.actions.location')} />
 
           <SidebarActionItem
-            icon={getPlaylistProviderIcon(event?.playlist)}
+            icon={getPlaylistProviderIcon(eventData?.playlist)}
             label={t('sidebar.actions.playlist')}
           />
         </div>

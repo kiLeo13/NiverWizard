@@ -1,0 +1,13 @@
+.main {
+  display: flex;
+  flex: 1;
+  overflow-y: auto;
+  box-sizing: border-box;
+  background-color: var(--background-color);
+}
+
+.board {
+  display: flex;
+  flex: 1;
+  overflow: auto;
+}
