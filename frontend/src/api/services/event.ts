@@ -12,13 +12,13 @@ export const eventKeys = {
   all: ['events'] as const,
   byNamespace: (namespace: string) => [...eventKeys.all, namespace] as const,
   list: (namespace: string) => [...eventKeys.byNamespace(namespace), 'list'] as const,
-  detail: (namespace: string, eventId: string) =>
-    [...eventKeys.byNamespace(namespace), 'detail', eventId] as const
+  detail: (namespace: string, eventDir: string) =>
+    [...eventKeys.byNamespace(namespace), 'detail', eventDir] as const
 }
 
 export const eventService = {
-  getEvent: async (namespace: string, eventId: string): Promise<EventResponse> => {
-    const resp = await apiClient.get(`/namespaces/${namespace}/events/${eventId}`)
+  getEvent: async (namespace: string, eventDir: string): Promise<EventResponse> => {
+    const resp = await apiClient.get(`/namespaces/${namespace}/events/${eventDir}`)
     return eventResponseSchema.parse(resp.data)
   },
 
@@ -29,10 +29,10 @@ export const eventService = {
 }
 
 export const eventQueries = {
-  detail: (namespace: string, eventId: string) =>
+  detail: (namespace: string, eventDir: string) =>
     queryOptions({
-      queryKey: eventKeys.detail(namespace, eventId),
-      queryFn: () => eventService.getEvent(namespace, eventId)
+      queryKey: eventKeys.detail(namespace, eventDir),
+      queryFn: () => eventService.getEvent(namespace, eventDir)
     }),
 
   listByNamespace: (namespace: string) =>

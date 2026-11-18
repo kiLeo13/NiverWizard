@@ -12,7 +12,7 @@ export const playlistResponseSchema = z.object({
 export const eventResponseSchema = z.object({
   id: z.string(),
   namespace: z.string(),
-  directory: z.string(),
+  slug: z.string(),
   name: z.string(),
   overview: z.string().nullable(),
   playlist: playlistResponseSchema.nullable(),
@@ -25,10 +25,11 @@ export const eventResponseSchema = z.object({
   userRole: eventRoleSchema
 })
 
-const eventSummaryResponseSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  createdAt: z.iso.datetime()
+const eventSummaryResponseSchema = eventResponseSchema.pick({
+  id: true,
+  name: true,
+  slug: true,
+  createdAt: true
 })
 
 export const listEventsResponseSchema = z.object({

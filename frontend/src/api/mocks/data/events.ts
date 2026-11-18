@@ -4,7 +4,7 @@ export const mockEvents: EventResponse[] = [
   {
     id: '1',
     namespace: 'maria',
-    directory: '2026',
+    slug: '2026',
     name: 'Niver 2026',
     overview: 'Vai ser meu aniversário em 01/12!!!',
     playlist: {
@@ -21,7 +21,7 @@ export const mockEvents: EventResponse[] = [
   {
     id: '2',
     namespace: 'joao',
-    directory: 'halloween2025',
+    slug: 'halloween2025',
     name: '🎃 Halloween Casita',
     overview: null,
     playlist: {

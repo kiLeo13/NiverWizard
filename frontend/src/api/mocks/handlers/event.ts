@@ -20,7 +20,7 @@ export const eventHandlers = [
 
     // The real API will also check whether the requester has access to this event,
     // but chill, this is just a mock ^^
-    const events = mockEvents.filter((e) => e.namespaceId === nspc.slug)
+    const events = mockEvents.filter((e) => e.namespace === nspc.slug)
 
     return HttpResponse.json(
       {
@@ -30,11 +30,11 @@ export const eventHandlers = [
     )
   }),
 
-  http.get('*/api/namespaces/:namespace/events/:eventId', async ({ params }) => {
-    const { eventId } = params
+  http.get('*/api/namespaces/:namespace/events/:eventDir', async ({ params }) => {
+    const { eventDir } = params
     await delay(250)
 
-    const event = mockEvents.find((e) => e.id === eventId)
+    const event = mockEvents.find((e) => e.slug === eventDir)
     if (!event) {
       return respMocks.jsonError(404, {
         errors: {

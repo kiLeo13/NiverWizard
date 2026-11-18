@@ -12,11 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as NamespaceRouteImport } from './routes/$namespace'
 import { Route as NamespaceIndexRouteImport } from './routes/$namespace/index'
-import { Route as NamespaceEventIdRouteImport } from './routes/$namespace/$eventId'
-import { Route as NamespaceEventIdIndexRouteImport } from './routes/$namespace/$eventId/index'
-import { Route as NamespaceEventIdGalleryRouteImport } from './routes/$namespace/$eventId/gallery'
-import { Route as NamespaceEventIdLocationRouteImport } from './routes/$namespace/$eventId/location'
-import { Route as NamespaceEventIdPlaylistRouteImport } from './routes/$namespace/$eventId/playlist'
+import { Route as NamespaceEventSlugRouteImport } from './routes/$namespace/$eventSlug'
+import { Route as NamespaceEventSlugIndexRouteImport } from './routes/$namespace/$eventSlug/index'
+import { Route as NamespaceEventSlugGalleryRouteImport } from './routes/$namespace/$eventSlug/gallery'
+import { Route as NamespaceEventSlugLocationRouteImport } from './routes/$namespace/$eventSlug/location'
+import { Route as NamespaceEventSlugPlaylistRouteImport } from './routes/$namespace/$eventSlug/playlist'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -33,92 +33,93 @@ const NamespaceIndexRoute = NamespaceIndexRouteImport.update({
   path: '/',
   getParentRoute: () => NamespaceRoute,
 } as any)
-const NamespaceEventIdRoute = NamespaceEventIdRouteImport.update({
-  id: '/$eventId',
-  path: '/$eventId',
+const NamespaceEventSlugRoute = NamespaceEventSlugRouteImport.update({
+  id: '/$eventSlug',
+  path: '/$eventSlug',
   getParentRoute: () => NamespaceRoute,
 } as any)
-const NamespaceEventIdIndexRoute = NamespaceEventIdIndexRouteImport.update({
+const NamespaceEventSlugIndexRoute = NamespaceEventSlugIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => NamespaceEventIdRoute,
+  getParentRoute: () => NamespaceEventSlugRoute,
 } as any)
-const NamespaceEventIdGalleryRoute = NamespaceEventIdGalleryRouteImport.update({
-  id: '/gallery',
-  path: '/gallery',
-  getParentRoute: () => NamespaceEventIdRoute,
-} as any)
-const NamespaceEventIdLocationRoute =
-  NamespaceEventIdLocationRouteImport.update({
+const NamespaceEventSlugGalleryRoute =
+  NamespaceEventSlugGalleryRouteImport.update({
+    id: '/gallery',
+    path: '/gallery',
+    getParentRoute: () => NamespaceEventSlugRoute,
+  } as any)
+const NamespaceEventSlugLocationRoute =
+  NamespaceEventSlugLocationRouteImport.update({
     id: '/location',
     path: '/location',
-    getParentRoute: () => NamespaceEventIdRoute,
+    getParentRoute: () => NamespaceEventSlugRoute,
   } as any)
-const NamespaceEventIdPlaylistRoute =
-  NamespaceEventIdPlaylistRouteImport.update({
+const NamespaceEventSlugPlaylistRoute =
+  NamespaceEventSlugPlaylistRouteImport.update({
     id: '/playlist',
     path: '/playlist',
-    getParentRoute: () => NamespaceEventIdRoute,
+    getParentRoute: () => NamespaceEventSlugRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$namespace': typeof NamespaceRouteWithChildren
-  '/$namespace/$eventId': typeof NamespaceEventIdRouteWithChildren
+  '/$namespace/$eventSlug': typeof NamespaceEventSlugRouteWithChildren
   '/$namespace/': typeof NamespaceIndexRoute
-  '/$namespace/$eventId/gallery': typeof NamespaceEventIdGalleryRoute
-  '/$namespace/$eventId/location': typeof NamespaceEventIdLocationRoute
-  '/$namespace/$eventId/playlist': typeof NamespaceEventIdPlaylistRoute
-  '/$namespace/$eventId/': typeof NamespaceEventIdIndexRoute
+  '/$namespace/$eventSlug/gallery': typeof NamespaceEventSlugGalleryRoute
+  '/$namespace/$eventSlug/location': typeof NamespaceEventSlugLocationRoute
+  '/$namespace/$eventSlug/playlist': typeof NamespaceEventSlugPlaylistRoute
+  '/$namespace/$eventSlug/': typeof NamespaceEventSlugIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$namespace': typeof NamespaceIndexRoute
-  '/$namespace/$eventId/gallery': typeof NamespaceEventIdGalleryRoute
-  '/$namespace/$eventId/location': typeof NamespaceEventIdLocationRoute
-  '/$namespace/$eventId/playlist': typeof NamespaceEventIdPlaylistRoute
-  '/$namespace/$eventId': typeof NamespaceEventIdIndexRoute
+  '/$namespace/$eventSlug/gallery': typeof NamespaceEventSlugGalleryRoute
+  '/$namespace/$eventSlug/location': typeof NamespaceEventSlugLocationRoute
+  '/$namespace/$eventSlug/playlist': typeof NamespaceEventSlugPlaylistRoute
+  '/$namespace/$eventSlug': typeof NamespaceEventSlugIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$namespace': typeof NamespaceRouteWithChildren
-  '/$namespace/$eventId': typeof NamespaceEventIdRouteWithChildren
+  '/$namespace/$eventSlug': typeof NamespaceEventSlugRouteWithChildren
   '/$namespace/': typeof NamespaceIndexRoute
-  '/$namespace/$eventId/gallery': typeof NamespaceEventIdGalleryRoute
-  '/$namespace/$eventId/location': typeof NamespaceEventIdLocationRoute
-  '/$namespace/$eventId/playlist': typeof NamespaceEventIdPlaylistRoute
-  '/$namespace/$eventId/': typeof NamespaceEventIdIndexRoute
+  '/$namespace/$eventSlug/gallery': typeof NamespaceEventSlugGalleryRoute
+  '/$namespace/$eventSlug/location': typeof NamespaceEventSlugLocationRoute
+  '/$namespace/$eventSlug/playlist': typeof NamespaceEventSlugPlaylistRoute
+  '/$namespace/$eventSlug/': typeof NamespaceEventSlugIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/$namespace'
-    | '/$namespace/$eventId'
+    | '/$namespace/$eventSlug'
     | '/$namespace/'
-    | '/$namespace/$eventId/gallery'
-    | '/$namespace/$eventId/location'
-    | '/$namespace/$eventId/playlist'
-    | '/$namespace/$eventId/'
+    | '/$namespace/$eventSlug/gallery'
+    | '/$namespace/$eventSlug/location'
+    | '/$namespace/$eventSlug/playlist'
+    | '/$namespace/$eventSlug/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/$namespace'
-    | '/$namespace/$eventId/gallery'
-    | '/$namespace/$eventId/location'
-    | '/$namespace/$eventId/playlist'
-    | '/$namespace/$eventId'
+    | '/$namespace/$eventSlug/gallery'
+    | '/$namespace/$eventSlug/location'
+    | '/$namespace/$eventSlug/playlist'
+    | '/$namespace/$eventSlug'
   id:
     | '__root__'
     | '/'
     | '/$namespace'
-    | '/$namespace/$eventId'
+    | '/$namespace/$eventSlug'
     | '/$namespace/'
-    | '/$namespace/$eventId/gallery'
-    | '/$namespace/$eventId/location'
-    | '/$namespace/$eventId/playlist'
-    | '/$namespace/$eventId/'
+    | '/$namespace/$eventSlug/gallery'
+    | '/$namespace/$eventSlug/location'
+    | '/$namespace/$eventSlug/playlist'
+    | '/$namespace/$eventSlug/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -149,68 +150,68 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NamespaceIndexRouteImport
       parentRoute: typeof NamespaceRoute
     }
-    '/$namespace/$eventId': {
-      id: '/$namespace/$eventId'
-      path: '/$eventId'
-      fullPath: '/$namespace/$eventId'
-      preLoaderRoute: typeof NamespaceEventIdRouteImport
+    '/$namespace/$eventSlug': {
+      id: '/$namespace/$eventSlug'
+      path: '/$eventSlug'
+      fullPath: '/$namespace/$eventSlug'
+      preLoaderRoute: typeof NamespaceEventSlugRouteImport
       parentRoute: typeof NamespaceRoute
     }
-    '/$namespace/$eventId/': {
-      id: '/$namespace/$eventId/'
+    '/$namespace/$eventSlug/': {
+      id: '/$namespace/$eventSlug/'
       path: '/'
-      fullPath: '/$namespace/$eventId/'
-      preLoaderRoute: typeof NamespaceEventIdIndexRouteImport
-      parentRoute: typeof NamespaceEventIdRoute
+      fullPath: '/$namespace/$eventSlug/'
+      preLoaderRoute: typeof NamespaceEventSlugIndexRouteImport
+      parentRoute: typeof NamespaceEventSlugRoute
     }
-    '/$namespace/$eventId/gallery': {
-      id: '/$namespace/$eventId/gallery'
+    '/$namespace/$eventSlug/gallery': {
+      id: '/$namespace/$eventSlug/gallery'
       path: '/gallery'
-      fullPath: '/$namespace/$eventId/gallery'
-      preLoaderRoute: typeof NamespaceEventIdGalleryRouteImport
-      parentRoute: typeof NamespaceEventIdRoute
+      fullPath: '/$namespace/$eventSlug/gallery'
+      preLoaderRoute: typeof NamespaceEventSlugGalleryRouteImport
+      parentRoute: typeof NamespaceEventSlugRoute
     }
-    '/$namespace/$eventId/location': {
-      id: '/$namespace/$eventId/location'
+    '/$namespace/$eventSlug/location': {
+      id: '/$namespace/$eventSlug/location'
       path: '/location'
-      fullPath: '/$namespace/$eventId/location'
-      preLoaderRoute: typeof NamespaceEventIdLocationRouteImport
-      parentRoute: typeof NamespaceEventIdRoute
+      fullPath: '/$namespace/$eventSlug/location'
+      preLoaderRoute: typeof NamespaceEventSlugLocationRouteImport
+      parentRoute: typeof NamespaceEventSlugRoute
     }
-    '/$namespace/$eventId/playlist': {
-      id: '/$namespace/$eventId/playlist'
+    '/$namespace/$eventSlug/playlist': {
+      id: '/$namespace/$eventSlug/playlist'
       path: '/playlist'
-      fullPath: '/$namespace/$eventId/playlist'
-      preLoaderRoute: typeof NamespaceEventIdPlaylistRouteImport
-      parentRoute: typeof NamespaceEventIdRoute
+      fullPath: '/$namespace/$eventSlug/playlist'
+      preLoaderRoute: typeof NamespaceEventSlugPlaylistRouteImport
+      parentRoute: typeof NamespaceEventSlugRoute
     }
   }
 }
 
-interface NamespaceEventIdRouteChildren {
-  NamespaceEventIdGalleryRoute: typeof NamespaceEventIdGalleryRoute
-  NamespaceEventIdLocationRoute: typeof NamespaceEventIdLocationRoute
-  NamespaceEventIdPlaylistRoute: typeof NamespaceEventIdPlaylistRoute
-  NamespaceEventIdIndexRoute: typeof NamespaceEventIdIndexRoute
+interface NamespaceEventSlugRouteChildren {
+  NamespaceEventSlugGalleryRoute: typeof NamespaceEventSlugGalleryRoute
+  NamespaceEventSlugLocationRoute: typeof NamespaceEventSlugLocationRoute
+  NamespaceEventSlugPlaylistRoute: typeof NamespaceEventSlugPlaylistRoute
+  NamespaceEventSlugIndexRoute: typeof NamespaceEventSlugIndexRoute
 }
 
-const NamespaceEventIdRouteChildren: NamespaceEventIdRouteChildren = {
-  NamespaceEventIdGalleryRoute: NamespaceEventIdGalleryRoute,
-  NamespaceEventIdLocationRoute: NamespaceEventIdLocationRoute,
-  NamespaceEventIdPlaylistRoute: NamespaceEventIdPlaylistRoute,
-  NamespaceEventIdIndexRoute: NamespaceEventIdIndexRoute,
+const NamespaceEventSlugRouteChildren: NamespaceEventSlugRouteChildren = {
+  NamespaceEventSlugGalleryRoute: NamespaceEventSlugGalleryRoute,
+  NamespaceEventSlugLocationRoute: NamespaceEventSlugLocationRoute,
+  NamespaceEventSlugPlaylistRoute: NamespaceEventSlugPlaylistRoute,
+  NamespaceEventSlugIndexRoute: NamespaceEventSlugIndexRoute,
 }
 
-const NamespaceEventIdRouteWithChildren =
-  NamespaceEventIdRoute._addFileChildren(NamespaceEventIdRouteChildren)
+const NamespaceEventSlugRouteWithChildren =
+  NamespaceEventSlugRoute._addFileChildren(NamespaceEventSlugRouteChildren)
 
 interface NamespaceRouteChildren {
-  NamespaceEventIdRoute: typeof NamespaceEventIdRouteWithChildren
+  NamespaceEventSlugRoute: typeof NamespaceEventSlugRouteWithChildren
   NamespaceIndexRoute: typeof NamespaceIndexRoute
 }
 
 const NamespaceRouteChildren: NamespaceRouteChildren = {
-  NamespaceEventIdRoute: NamespaceEventIdRouteWithChildren,
+  NamespaceEventSlugRoute: NamespaceEventSlugRouteWithChildren,
   NamespaceIndexRoute: NamespaceIndexRoute,
 }
 

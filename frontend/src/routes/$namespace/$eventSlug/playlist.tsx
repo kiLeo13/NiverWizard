@@ -2,7 +2,7 @@ import type { JSX } from 'react/jsx-runtime'
 
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/$namespace/$eventId/playlist')({
+export const Route = createFileRoute('/$namespace/$eventSlug/playlist')({
   component: PlaylistView
 })
 
