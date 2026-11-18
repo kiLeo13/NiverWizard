@@ -15,6 +15,7 @@ export const mockEvents: EventResponse[] = [
     rsvpDeadline: new Date(2026, 11, 1, 17, 0, 0).toISOString(),
     createdAt: new Date(2026, 10, 10, 15, 54, 18).toISOString(),
     updatedAt: new Date(2026, 10, 10, 15, 54, 18).toISOString(),
+    galleryProvider: 'internal',
     ownerId: '2',
     userRole: 'owner'
   },
@@ -32,6 +33,7 @@ export const mockEvents: EventResponse[] = [
     rsvpDeadline: new Date(2025, 9, 25, 0, 0, 0).toISOString(),
     createdAt: new Date(2025, 9, 3, 13, 35, 27).toISOString(),
     updatedAt: new Date(2025, 9, 3, 13, 35, 27).toISOString(),
+    galleryProvider: 'internal',
     ownerId: '1',
     userRole: 'member'
   }

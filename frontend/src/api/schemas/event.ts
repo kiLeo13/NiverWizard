@@ -4,6 +4,8 @@ import { eventRoleSchema } from './event-member'
 // ---------- API Contracts ----------
 const playlistProviderSchema = z.enum(['spotify', 'deezer', 'applemusic'])
 
+const galleryProviderSchema = z.enum(['internal', 'googledrive'])
+
 export const playlistResponseSchema = z.object({
   provider: playlistProviderSchema,
   url: z.url()
@@ -21,6 +23,7 @@ export const eventResponseSchema = z.object({
   createdAt: z.iso.datetime(),
   updatedAt: z.iso.datetime(),
 
+  galleryProvider: galleryProviderSchema,
   ownerId: z.string(),
   userRole: eventRoleSchema
 })
