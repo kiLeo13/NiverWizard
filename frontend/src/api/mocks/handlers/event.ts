@@ -30,11 +30,11 @@ export const eventHandlers = [
     )
   }),
 
-  http.get('*/api/namespaces/:namespace/events/:eventDir', async ({ params }) => {
-    const { eventDir } = params
+  http.get('*/api/namespaces/:namespace/events/:eventSlug', async ({ params }) => {
+    const { eventSlug } = params
     await delay(250)
 
-    const event = mockEvents.find((e) => e.slug === eventDir)
+    const event = mockEvents.find((e) => e.slug === eventSlug)
     if (!event) {
       return respMocks.jsonError(404, {
         errors: {
