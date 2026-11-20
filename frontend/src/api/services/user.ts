@@ -5,12 +5,18 @@ import { queryOptions } from '@tanstack/react-query'
 
 export const userKeys = {
   all: ['users'] as const,
-  byId: (userId: string) => [...userKeys.all, userId] as const
+  self: () => [...userKeys.all, 'self'] as const,
+  byId: (userId: string) => [...userKeys.all, 'detail', userId] as const
 }
 
 export const userService = {
   getUser: async (userId: string): Promise<UserResponse> => {
     const resp = await apiClient.get(`/users/${userId}`)
+    return userResponseSchema.parse(resp.data)
+  },
+
+  getSelf: async (): Promise<UserResponse> => {
+    const resp = await apiClient.get('/users/me')
     return userResponseSchema.parse(resp.data)
   }
 }
@@ -20,5 +26,11 @@ export const userQueries = {
     queryOptions({
       queryKey: userKeys.byId(userId),
       queryFn: () => userService.getUser(userId)
+    }),
+
+  getSelf: () =>
+    queryOptions({
+      queryKey: userKeys.self(),
+      queryFn: userService.getSelf
     })
 }
