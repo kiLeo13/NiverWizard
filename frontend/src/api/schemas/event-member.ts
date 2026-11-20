@@ -11,4 +11,6 @@ export const eventMemberResponseSchema = z.object({
   user: userResponseSchema
 })
 
+export type EventRole = z.infer<typeof eventRoleSchema>
+export type RsvpStatus = z.infer<typeof rsvpStatusSchema>
 export type EventMemberResponse = z.infer<typeof eventMemberResponseSchema>
