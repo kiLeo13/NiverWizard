@@ -7,7 +7,9 @@ export const userHandlers = [
     const { userId } = params
     await delay(250)
 
-    const user = mockUsers.find((u) => u.id === userId)
+    // Yes, we are maria ^^
+    const lookupId = userId === 'me' ? '2' : userId
+    const user = mockUsers.find((u) => u.id === lookupId)
     if (!user) {
       return respMocks.jsonError(404, {
         errors: {
