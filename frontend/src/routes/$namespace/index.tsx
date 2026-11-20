@@ -18,7 +18,7 @@ function NamespaceIndexPage(): JSX.Element {
     if (events && events.partialEvents.length > 0) {
       navigate({
         to: '/$namespace/$eventSlug',
-        params: { namespace, eventSlug: events.partialEvents[0].id }, // consider using `directory` field
+        params: { namespace, eventSlug: events.partialEvents[0].id },
         replace: true
       })
     }
