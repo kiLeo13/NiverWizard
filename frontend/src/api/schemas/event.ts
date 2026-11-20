@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { eventRoleSchema } from './event-member'
+import { addressSchema } from './common'
 
 // ---------- API Contracts ----------
 const playlistProviderSchema = z.enum(['spotify', 'deezer', 'applemusic'])
@@ -11,8 +12,17 @@ export const playlistResponseSchema = z.object({
   url: z.url()
 })
 
+export const eventLocationResponseSchema = z.object({
+  name: z.string(),
+  address: addressSchema.nullable(),
+  mapsUrl: z.url().nullable(),
+  instructions: z.string().nullable(),
+  photos: z.array(z.url())
+})
+
 export const eventResponseSchema = z.object({
   id: z.string(),
+  ownerId: z.string(),
   namespace: z.string(),
   slug: z.string(),
   name: z.string(),
@@ -23,8 +33,8 @@ export const eventResponseSchema = z.object({
   createdAt: z.iso.datetime(),
   updatedAt: z.iso.datetime(),
 
+  location: eventLocationResponseSchema,
   galleryProvider: galleryProviderSchema,
-  ownerId: z.string(),
   userRole: eventRoleSchema
 })
 
@@ -42,5 +52,6 @@ export const listEventsResponseSchema = z.object({
 
 // ---------- Type Exports ----------
 export type PlaylistResponse = z.infer<typeof playlistResponseSchema>
+export type EventLocationResponse = z.infer<typeof eventLocationResponseSchema>
 export type EventResponse = z.infer<typeof eventResponseSchema>
 export type ListEventsResponse = z.infer<typeof listEventsResponseSchema>

@@ -3,6 +3,7 @@ import type { EventResponse } from '@/api/schemas/event'
 export const mockEvents: EventResponse[] = [
   {
     id: '1',
+    ownerId: '2',
     namespace: 'maria',
     slug: '2026',
     name: 'Niver 2026',
@@ -15,12 +16,25 @@ export const mockEvents: EventResponse[] = [
     rsvpDeadline: new Date(2026, 11, 1, 17, 0, 0).toISOString(),
     createdAt: new Date(2026, 10, 10, 15, 54, 18).toISOString(),
     updatedAt: new Date(2026, 10, 10, 15, 54, 18).toISOString(),
+    location: {
+      name: 'Shopping Eldourado',
+      address: {
+        city: 'São Paulo',
+        state: 'São Paulo',
+        street: 'Av. Rebouças',
+        number: '3970',
+        zipCode: '05402600'
+      },
+      mapsUrl: 'https://maps.app.goo.gl/PPgD8ksWJCPJfHZX6',
+      instructions: null,
+      photos: []
+    },
     galleryProvider: 'internal',
-    ownerId: '2',
     userRole: 'owner'
   },
   {
     id: '2',
+    ownerId: '1',
     namespace: 'joao',
     slug: 'halloween2025',
     name: '🎃 Halloween Casita',
@@ -33,8 +47,20 @@ export const mockEvents: EventResponse[] = [
     rsvpDeadline: new Date(2025, 9, 25, 0, 0, 0).toISOString(),
     createdAt: new Date(2025, 9, 3, 13, 35, 27).toISOString(),
     updatedAt: new Date(2025, 9, 3, 13, 35, 27).toISOString(),
+    location: {
+      name: 'Bosque Ribeirão',
+      address: {
+        city: 'Ribeirão Preto',
+        state: 'São Paulo',
+        street: 'Rua Tamandaré',
+        number: '390',
+        zipCode: '14085070'
+      },
+      mapsUrl: 'https://maps.app.goo.gl/AR83eNXXjrMysL4j8',
+      instructions: null,
+      photos: []
+    },
     galleryProvider: 'internal',
-    ownerId: '1',
     userRole: 'member'
   }
 ]
