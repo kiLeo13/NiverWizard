@@ -6,6 +6,7 @@ import { routeTree } from './routeTree.gen'
 import { i18nReady } from './i18n'
 
 import './index.css'
+import { userQueries } from './api/services/user'
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,6 +16,8 @@ export const queryClient = new QueryClient({
     }
   }
 })
+
+void queryClient.query(userQueries.getSelf())
 
 const router = createRouter({
   routeTree,
