@@ -1,7 +1,16 @@
 {
+  "roles": {
+    "viewer": "Espectador",
+    "member": "Convidado",
+    "organizer": "Organizador",
+    "author": "Autor",
+    "owner": "Dono"
+  },
   "sidebar": {
     "details": {
-      "title": "Detalhes"
+      "title": "Detalhes",
+      "time": "Hora",
+      "date": "Data"
     },
     "actions": {
       "title": "Interações",
