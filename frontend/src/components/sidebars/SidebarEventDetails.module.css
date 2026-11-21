@@ -1,0 +1,44 @@
+.contents {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 16px;
+  margin-top: 5px;
+
+  --skeleton-background-color: rgba(230, 230, 255, 0.09);
+}
+
+.detailItem {
+  display: flex;
+  color: rgb(198, 196, 207);
+  gap: 5px;
+}
+
+.detailLabel {
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0.6;
+}
+
+.detailValue {
+  opacity: 0.9;
+}
+
+.noLabel {
+  color: transparent;
+  background-color: var(--skeleton-background-color);
+  border-radius: 9999px;
+}
+
+.noValue {
+  width: 60%;
+  margin-left: 5px;
+  border-radius: 9999px;
+  background-color: var(--skeleton-background-color);
+}
+
+/* Items-scoped */
+.role {
+  font-size: 14px;
+  opacity: 0.8;
+}

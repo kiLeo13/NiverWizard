@@ -4,6 +4,7 @@ import type { PlaylistResponse } from '@/api/schemas/event'
 
 import { FiBox } from 'react-icons/fi'
 import { MdOutlinePhotoLibrary } from 'react-icons/md'
+import { SidebarEventDetails } from './SidebarEventDetails'
 import { SidebarActionItem } from './SidebarActionItem'
 import { FaLocationDot } from 'react-icons/fa6'
 import { FaDeezer } from 'react-icons/fa'
@@ -32,7 +33,7 @@ export function Sidebar(): JSX.Element {
         <header className={styles.header}>
           <h2 className={styles.title}>{t('sidebar.details.title')}</h2>
         </header>
-        <div className={styles.contents}></div>
+        <SidebarEventDetails event={eventData} />
       </div>
 
       <div className={styles.actions}>
@@ -40,16 +41,26 @@ export function Sidebar(): JSX.Element {
           <h2 className={styles.title}>{t('sidebar.actions.title')}</h2>
         </header>
         <div className={styles.interactions}>
-          <SidebarActionItem icon={<FiBox />} label={t('sidebar.actions.overview')} />
+          <SidebarActionItem
+            disabled={!eventData}
+            icon={<FiBox />}
+            label={t('sidebar.actions.overview')}
+          />
 
           <SidebarActionItem
+            disabled={!eventData}
+            icon={<FaLocationDot />}
+            label={t('sidebar.actions.location')}
+          />
+
+          <SidebarActionItem
+            disabled={!eventData}
             icon={<MdOutlinePhotoLibrary />}
             label={t('sidebar.actions.gallery')}
           />
 
-          <SidebarActionItem icon={<FaLocationDot />} label={t('sidebar.actions.location')} />
-
           <SidebarActionItem
+            disabled={!eventData}
             icon={getPlaylistProviderIcon(eventData?.playlist)}
             label={t('sidebar.actions.playlist')}
           />
