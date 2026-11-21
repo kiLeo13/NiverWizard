@@ -5,7 +5,7 @@
   gap: 5px;
   color: rgb(198, 196, 207);
   border-radius: 8px;
-  padding: 8px;
+  padding: 6px 8px;
 }
 
 .item:hover:not(.disabled) {

@@ -2,6 +2,8 @@ import type { JSX } from 'react/jsx-runtime'
 import type { ReactNode } from 'react'
 import type { PlaylistResponse } from '@/api/schemas/event'
 
+import clsx from 'clsx'
+
 import { FiBox } from 'react-icons/fi'
 import { MdOutlinePhotoLibrary } from 'react-icons/md'
 import { SidebarEventDetails } from './SidebarEventDetails'
@@ -37,7 +39,7 @@ export function Sidebar(): JSX.Element {
       </div>
 
       <div className={styles.actions}>
-        <header className={styles.header}>
+        <header className={clsx(styles.header, styles.actionsHeader)}>
           <h2 className={styles.title}>{t('sidebar.actions.title')}</h2>
         </header>
         <div className={styles.interactions}>

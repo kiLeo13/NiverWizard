@@ -23,6 +23,10 @@
   margin-top: 18px;
 }
 
+.actionsHeader {
+  margin-bottom: 2px;
+}
+
 .interactions {
   display: flex;
   flex-direction: column;
