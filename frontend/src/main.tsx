@@ -1,7 +1,7 @@
 import * as Tooltip from '@radix-ui/react-tooltip'
 
 import { StrictMode } from 'react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { noop, QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { createRouter, RouterProvider } from '@tanstack/react-router'
 import { userQueries } from './api/services/user'
 import { createRoot } from 'react-dom/client'
@@ -18,8 +18,6 @@ export const queryClient = new QueryClient({
     }
   }
 })
-
-void queryClient.query(userQueries.getSelf())
 
 const router = createRouter({
   routeTree,
@@ -47,6 +45,8 @@ async function enableMocking() {
 async function bootstrap() {
   await enableMocking()
   await i18nReady
+
+  void queryClient.query(userQueries.getSelf()).catch(noop)
 
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
