@@ -1,0 +1,25 @@
+.content {
+  background-color: rgba(60, 57, 66, 0.8);
+  backdrop-filter: blur(10px);
+  color: #ece9f0;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(108, 98, 124, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  user-select: none;
+  animation: fadeIn 100ms ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
