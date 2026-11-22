@@ -26,6 +26,10 @@ export const TwemojiNode = Node.create({
     return [{ tag: 'img[data-emoji]' }]
   },
 
+  renderText({ node }) {
+    return node.attrs.emoji as string
+  },
+
   renderHTML({ HTMLAttributes }) {
     const codePoint = twemoji.convert.toCodePoint(HTMLAttributes['data-emoji'])
 
