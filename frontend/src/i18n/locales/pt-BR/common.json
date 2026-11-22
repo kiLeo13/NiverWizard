@@ -1,3 +1,27 @@
 {
-  "you": "Você"
+  "keys": {
+    "tab": "TAB"
+  },
+  "you": "Você",
+  "editor": {
+    "labels": {
+      "history": "Histórico",
+      "headings": "Títulos",
+      "styles": "Estilos",
+      "insert": "Inserir"
+    },
+    "undo": "Desfazer (Ctrl+Z)",
+    "redo": "Refazer (Ctrl+Y)",
+    "heading1": "Título 1",
+    "heading2": "Título 2",
+    "heading3": "Título 3",
+    "bold": "Negrito (Ctrl+B)",
+    "italic": "Itálico (Ctrl+I)",
+    "color": "Alterar Cor",
+    "code": "Código",
+    "bulletList": "Lista com Marcadores",
+    "orderedList": "Lista Numerada",
+    "blockquote": "Citação",
+    "horizontalRule": "Quebra de Linha"
+  }
 }

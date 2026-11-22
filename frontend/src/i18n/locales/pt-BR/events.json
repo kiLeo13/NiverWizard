@@ -6,6 +6,9 @@
     "author": "Autor",
     "owner": "Dono"
   },
+  "editor": {
+    "placeholder": "Escreva os detalhes do evento ou digite ':' para emojis..."
+  },
   "sidebar": {
     "details": {
       "title": "Detalhes",
