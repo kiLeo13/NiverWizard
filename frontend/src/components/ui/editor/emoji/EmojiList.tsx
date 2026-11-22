@@ -4,7 +4,7 @@ import type { EmojiItem } from './searchEmoji'
 import clsx from 'clsx'
 
 import { TwemojiIcon } from './TwemojiIcon'
-import { forwardRef, useEffect, useImperativeHandle, useState } from 'react'
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import styles from './EmojiList.module.css'
@@ -16,10 +16,15 @@ export type EmojiListRef = {
 export const EmojiList = forwardRef<EmojiListRef, SuggestionProps<EmojiItem>>((props, ref) => {
   const { t } = useTranslation('common')
   const [selectedIndex, setSelectedIndex] = useState(0)
+  const activeRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     setSelectedIndex(0)
   }, [props.items])
+
+  useEffect(() => {
+    activeRef.current?.scrollIntoView({ block: 'nearest' })
+  }, [selectedIndex])
 
   const selectItem = (index: number) => {
     const item = props.items[index]
@@ -54,6 +59,7 @@ export const EmojiList = forwardRef<EmojiListRef, SuggestionProps<EmojiItem>>((p
       {props.items.map((item, index) => (
         <button
           key={item.id}
+          ref={index === selectedIndex ? activeRef : undefined}
           type="button"
           className={clsx(styles.item, index === selectedIndex && styles.selected)}
           onClick={() => selectItem(index)}
