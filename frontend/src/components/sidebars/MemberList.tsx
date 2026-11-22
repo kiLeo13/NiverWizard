@@ -4,6 +4,8 @@ import styles from './MemberList.module.css'
 
 export function MemberList(): JSX.Element {
   return (
-    <div></div>
+    <div className={styles.container}>
+      
+    </div>
   )
 }
