@@ -1,0 +1,118 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.editorContent {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.editorContent :global(.ProseMirror) {
+  flex: 1;
+  padding: 1rem 1.25rem;
+  outline: none;
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: #f3f4f6;
+}
+
+.editorContent :global(.ProseMirror) > * + * {
+  margin-top: 0.75rem;
+}
+
+.editorContent :global(img.emoji) {
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  margin: 0;
+  vertical-align: -0.2em;
+}
+
+.editorContent :global(.ProseMirror h1) {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.8rem 0;
+}
+
+.editorContent :global(.ProseMirror h2) {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.editorContent :global(.ProseMirror h3) {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 0.75rem;
+}
+
+.editorContent :global(.ProseMirror ul),
+.editorContent :global(.ProseMirror ol) {
+  padding-left: 1.5rem;
+}
+
+.editorContent :global(.ProseMirror li) {
+  margin-bottom: 0.25rem;
+}
+
+.editorContent :global(.ProseMirror blockquote) {
+  position: relative;
+  padding-left: 0.7rem;
+  margin: 0;
+  font-style: italic;
+  color: #918f9b;
+}
+
+.editorContent :global(.ProseMirror blockquote)::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 3px;
+  border-radius: 9999px;
+  background-color: #85828b;
+}
+
+.editorContent :global(.ProseMirror hr) {
+  border: none;
+  border-top: 1px solid #6d6b70;
+  margin: 1.3rem 0;
+}
+
+.editorContent :global(.ProseMirror p) {
+  margin: 3px 0;
+  line-height: 1.3;
+}
+
+.editorContent :global(.ProseMirror p.is-editor-empty:first-child::before) {
+  content: attr(data-placeholder);
+  float: left;
+  color: rgba(220, 218, 226, 0.35);
+  pointer-events: none;
+  height: 0;
+}
+
+.editorContent :global(.ProseMirror code) {
+  background-color: rgba(0, 0, 0, 0.25);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+.editorContent :global(.ProseMirror a) {
+  cursor: pointer;
+  color: rgb(66, 157, 199);
+  padding: 2px 3px;
+  border-radius: 3px;
+  transition: background-color 100ms;
+}
+
+.editorContent :global(.ProseMirror a):hover {
+  cursor: pointer;
+  background-color: rgba(66, 157, 199, 0.15);
+}
