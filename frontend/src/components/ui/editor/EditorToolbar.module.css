@@ -1,0 +1,47 @@
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 10px 15px;
+  background-color: rgba(0, 0, 0, 0.1);
+  user-select: none;
+  border-bottom: 1px solid rgba(151, 151, 159, 0.18);
+}
+
+.group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 5px;
+}
+
+.groupHeading {
+  color: rgb(131, 128, 138);
+  font-size: 14px;
+}
+
+.groupTools {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.group:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  min-width: 1px;
+  height: 80%;
+  background-color: rgba(223, 220, 231, 0.15);
+}
+
+.icon {
+  color: rgb(220, 218, 226);
+
+  --icon-size: 20px; /* Icons must ALWAYS be in 1:1 aspect ration */
+  height: var(--icon-size);
+  width: var(--icon-size);
+}
