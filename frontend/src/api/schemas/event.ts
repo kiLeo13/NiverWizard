@@ -3,6 +3,8 @@ import { eventRoleSchema } from './event-member'
 import { addressSchema } from './common'
 
 // ---------- API Contracts ----------
+export const OVERVIEW_MAX_LENGTH = 50_000
+
 const playlistProviderSchema = z.enum(['spotify', 'deezer', 'applemusic'])
 
 const galleryProviderSchema = z.enum(['internal', 'googledrive'])
