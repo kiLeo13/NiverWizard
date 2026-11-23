@@ -10,9 +10,9 @@ export const Route = createFileRoute('/$namespace/$eventSlug')({
 
 function BaseEventLayout(): JSX.Element {
   const { namespace, eventSlug } = Route.useParams()
-  const { data, isLoading, error } = useQuery(eventQueries.detail(namespace, eventSlug))
+  const { data, isLoading, isError, error } = useQuery(eventQueries.detail(namespace, eventSlug))
 
-  if (data) return <Outlet />
+  if (data && !isError) return <Outlet />
 
   return (
     <div>
