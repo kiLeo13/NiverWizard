@@ -12,11 +12,12 @@ function BaseEventLayout(): JSX.Element {
   const { namespace, eventSlug } = Route.useParams()
   const { data, isLoading, error } = useQuery(eventQueries.detail(namespace, eventSlug))
 
+  if (data) return <Outlet />
+
   return (
     <div>
       {error?.isNotFound && <div>Nothing found</div>}
       {isLoading && <div>Loading...</div>}
-      {data && <Outlet />}
     </div>
   )
 }
