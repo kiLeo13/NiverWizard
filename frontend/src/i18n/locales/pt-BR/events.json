@@ -10,6 +10,7 @@
     "placeholder": "Escreva os detalhes do evento ou digite ':' para emojis..."
   },
   "sidebar": {
+    "ownerCrown": "Você criou esse evento",
     "details": {
       "title": "Detalhes",
       "time": "Hora",

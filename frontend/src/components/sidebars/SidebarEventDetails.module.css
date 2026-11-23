@@ -21,7 +21,9 @@
 }
 
 .detailValue {
-  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .noLabel {

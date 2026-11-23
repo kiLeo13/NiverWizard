@@ -1,9 +1,12 @@
 import type { JSX } from 'react/jsx-runtime'
+import type { ReactNode } from 'react'
 import type { EventResponse } from '@/api/schemas/event'
 import type { TFunction } from 'i18next'
 
 import clsx from 'clsx'
 
+import { WizardTooltip } from '../ui/WizardTooltip'
+import { FaCrown } from 'react-icons/fa'
 import { useQuery } from '@tanstack/react-query'
 import { userQueries } from '@/api/services/user'
 import { useTranslation } from 'react-i18next'
@@ -33,7 +36,10 @@ export function SidebarEventDetails({ event }: SidebarEventDetailsProps): JSX.El
 
   return (
     <div className={styles.contents}>
-      <DetailItem label={t('events:roles.author')} value={ownerName} />
+      <DetailItem
+        label={t('events:roles.author')}
+        value={fmtOwnerName(t, isSelfOwner, ownerName)}
+      />
 
       <DetailItem label={toDatetime(t, isToday)} value={startTime} />
     </div>
@@ -42,20 +48,31 @@ export function SidebarEventDetails({ event }: SidebarEventDetailsProps): JSX.El
 
 type DetailItemProps = {
   label: string
-  value: string | undefined | null
+  value: ReactNode
 }
 
 function DetailItem({ label, value }: DetailItemProps): JSX.Element {
   return (
     <div className={styles.detailItem}>
       <div className={clsx(styles.detailLabel, !value && styles.noLabel)}>{label}</div>
-      <div className={clsx(styles.detailValue, !value && styles.noValue)}>
-        {value && <span>{value}</span>}
-      </div>
+      <div className={clsx(styles.detailValue, !value && styles.noValue)}>{value}</div>
     </div>
   )
 }
 
 function toDatetime(t: i18nFunc, isToday: boolean): string {
   return isToday ? t('events:sidebar.details.time') : t('events:sidebar.details.date')
+}
+
+function fmtOwnerName(t: i18nFunc, isSelfOwner: boolean, name: string | undefined): ReactNode {
+  if (!isSelfOwner) return name
+
+  return (
+    <>
+      <span>{name}</span>
+      <WizardTooltip label={t('events:sidebar.ownerCrown')}>
+        <FaCrown color="#ece361" />
+      </WizardTooltip>
+    </>
+  )
 }
