@@ -16,7 +16,7 @@ function RouteComponent(): JSX.Element {
 
   return (
     <BaseNamespaceMount namespace={namespace}>
-      <NamespaceLayout>
+      <NamespaceLayout namespace={namespace}>
         <Outlet />
       </NamespaceLayout>
     </BaseNamespaceMount>

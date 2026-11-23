@@ -7,14 +7,14 @@ import { MemberList } from '../sidebars/MemberList'
 import styles from './NamespaceLayout.module.css'
 
 type NamespaceLayoutProps = {
+  namespace: string
   children: ReactNode
 }
 
-export function NamespaceLayout({ children }: NamespaceLayoutProps): JSX.Element {
-  
+export function NamespaceLayout({ namespace, children }: NamespaceLayoutProps): JSX.Element {
   return (
     <main className={styles.main}>
-      <Sidebar />
+      <Sidebar namespace={namespace} />
 
       <div className={styles.board}>{children}</div>
 

@@ -20,13 +20,17 @@ import { eventQueries } from '@/api/services/event'
 
 import styles from './Sidebar.module.css'
 
-export function Sidebar(): JSX.Element {
-  const { namespace, eventSlug } = useParams({ strict: false })
+type SidebarProps = {
+  namespace: string
+}
+
+export function Sidebar({ namespace }: SidebarProps): JSX.Element {
+  const { eventSlug } = useParams({ strict: false })
   const { t } = useTranslation('events')
 
   const { data: eventData } = useQuery({
-    ...eventQueries.detail(namespace!, eventSlug!),
-    enabled: !!(namespace && eventSlug)
+    ...eventQueries.detail(namespace, eventSlug!),
+    enabled: !!eventSlug
   })
 
   return (
