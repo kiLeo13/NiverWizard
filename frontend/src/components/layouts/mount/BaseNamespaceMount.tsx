@@ -22,7 +22,7 @@ export function BaseNamespaceMount({ namespace, children }: BaseNamespaceMountPr
 
   return (
     <div className={styles.mount}>
-      <NamespaceHeader owner={ownerData} isLoading={isLoading} />
+      <NamespaceHeader ownerData={ownerData} isOwnerLoading={isLoading} />
       {children}
     </div>
   )
