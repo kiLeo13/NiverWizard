@@ -4,6 +4,7 @@ import type { SuggestionKeyDownProps } from '@tiptap/suggestion'
 import { EditorContent, useEditor } from '@tiptap/react'
 import { EditorToolbar } from './EditorToolbar'
 import { getExtensions } from './extensions'
+import { useEffect } from 'react'
 
 import styles from './RichTextEditor.module.css'
 
@@ -27,6 +28,10 @@ export function RichTextEditor({
     editable,
     onUpdate: ({ editor }) => onChange?.(editor.getJSON())
   })
+
+  useEffect(() => {
+    editor.setEditable(editable)
+  }, [editor, editable])
 
   if (!editor) return null
 
