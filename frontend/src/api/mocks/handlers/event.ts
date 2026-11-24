@@ -29,6 +29,7 @@ export const eventHandlers = [
         id: e.id,
         name: e.name,
         slug: e.slug,
+        startsAt: e.startsAt,
         createdAt: e.createdAt
       }))
     }

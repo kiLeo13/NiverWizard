@@ -40,10 +40,11 @@ export const eventResponseSchema = z.object({
   userRole: eventRoleSchema
 })
 
-const eventSummaryResponseSchema = eventResponseSchema.pick({
+export const eventSummaryResponseSchema = eventResponseSchema.pick({
   id: true,
   name: true,
   slug: true,
+  startsAt: true,
   createdAt: true
 })
 
@@ -56,4 +57,5 @@ export const listEventsResponseSchema = z.object({
 export type PlaylistResponse = z.infer<typeof playlistResponseSchema>
 export type EventLocationResponse = z.infer<typeof eventLocationResponseSchema>
 export type EventResponse = z.infer<typeof eventResponseSchema>
+export type EventSummaryResponse = z.infer<typeof eventSummaryResponseSchema>
 export type ListEventsResponse = z.infer<typeof listEventsResponseSchema>
