@@ -1,4 +1,10 @@
 {
+  "menus": {
+    "select": {
+      "searchPlaceholder": "Buscar...",
+      "noResults": "Nenhum resultado"
+    }
+  },
   "keys": {
     "tab": "TAB"
   },

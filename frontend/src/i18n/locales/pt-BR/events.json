@@ -11,6 +11,10 @@
   },
   "sidebar": {
     "ownerCrown": "Você criou esse evento",
+    "selection": {
+      "title": "Evento",
+      "placeholder": "Selecione um evento"
+    },
     "details": {
       "title": "Detalhes",
       "time": "Hora",
