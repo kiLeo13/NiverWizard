@@ -1,5 +1,5 @@
-import type { ReactElement, ReactNode } from 'react'
 import type { JSX } from 'react/jsx-runtime'
+import { useState, type ReactElement, type ReactNode } from 'react'
 
 import * as Tooltip from '@radix-ui/react-tooltip'
 
@@ -13,6 +13,7 @@ type WizardTooltipProps = {
   side?: SideOptions
   sideOffset?: number
   canHover?: boolean
+  disabled?: boolean
 }
 
 export function WizardTooltip({
@@ -20,10 +21,24 @@ export function WizardTooltip({
   label,
   side = 'top',
   sideOffset = 5,
-  canHover
+  canHover,
+  disabled
 }: WizardTooltipProps): JSX.Element {
+  const [open, setOpen] = useState(false)
+  const [prevDisabled, setPrevDisabled] = useState(disabled)
+
+  // Avoids unnecessary `useEffect` calls to prevent possible cascading calls
+  if (disabled !== prevDisabled) {
+    setPrevDisabled(disabled)
+    setOpen(false)
+  }
+
   return (
-    <Tooltip.Root disableHoverableContent={!canHover}>
+    <Tooltip.Root
+      open={open && !disabled}
+      onOpenChange={(next) => setOpen(next && !disabled)}
+      disableHoverableContent={!canHover}
+    >
       <Tooltip.Trigger asChild>{children}</Tooltip.Trigger>
 
       <Tooltip.Portal>
