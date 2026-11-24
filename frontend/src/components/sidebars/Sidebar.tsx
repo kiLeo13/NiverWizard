@@ -6,6 +6,7 @@ import clsx from 'clsx'
 
 import { FiBox } from 'react-icons/fi'
 import { MdOutlinePhotoLibrary } from 'react-icons/md'
+import { SidebarEventSelector } from './SidebarEventSelector'
 import { SidebarEventDetails } from './SidebarEventDetails'
 import { SidebarActionItem } from './SidebarActionItem'
 import { FaLocationDot } from 'react-icons/fa6'
@@ -35,6 +36,13 @@ export function Sidebar({ namespace }: SidebarProps): JSX.Element {
 
   return (
     <aside className={styles.container}>
+      <div className={styles.selection}>
+        <header className={styles.header}>
+          <h2 className={styles.title}>{t('sidebar.selection.title')}</h2>
+        </header>
+        <SidebarEventSelector namespace={namespace} eventData={eventData} />
+      </div>
+
       <div className={styles.details}>
         <header className={styles.header}>
           <h2 className={styles.title}>{t('sidebar.details.title')}</h2>

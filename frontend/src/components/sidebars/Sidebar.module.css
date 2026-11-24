@@ -20,7 +20,8 @@
   font-size: 14px;
 }
 
-.actions {
+.actions,
+.details {
   margin-top: 18px;
 }
 
