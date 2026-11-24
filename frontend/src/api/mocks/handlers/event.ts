@@ -1,3 +1,5 @@
+import type { ListEventsResponse } from '@/api/schemas/event'
+
 import { delay, http, HttpResponse } from 'msw'
 import { mockEvents } from '../data/events'
 import { respMocks } from './respUtils'
@@ -21,13 +23,17 @@ export const eventHandlers = [
     // The real API will also check whether the requester has access to this event,
     // but chill, this is just a mock ^^
     const events = mockEvents.filter((e) => e.namespace === nspc.slug)
+    const resp: ListEventsResponse = {
+      hasMore: false,
+      partialEvents: events.map((e) => ({
+        id: e.id,
+        name: e.name,
+        slug: e.slug,
+        createdAt: e.createdAt
+      }))
+    }
 
-    return HttpResponse.json(
-      {
-        events: events
-      },
-      { status: 200 }
-    )
+    return HttpResponse.json(resp, { status: 200 })
   }),
 
   http.get('*/api/namespaces/:namespace/events/:eventSlug', async ({ params }) => {
