@@ -13,7 +13,8 @@
     "ownerCrown": "Você criou esse evento",
     "selection": {
       "title": "Evento",
-      "placeholder": "Selecione um evento"
+      "placeholder": "Selecione um evento",
+      "empty": "Sem eventos disponíveis"
     },
     "details": {
       "title": "Detalhes",

@@ -1,6 +1,7 @@
 import type { JSX } from 'react/jsx-runtime'
 import type { EventResponse } from '@/api/schemas/event'
 
+import { WizardTooltip } from '../ui/WizardTooltip'
 import { WizardDropdown } from '../ui/dropdown/WizardDropdown'
 import { eventQueries } from '@/api/services/event'
 import { useQuery } from '@tanstack/react-query'
@@ -21,6 +22,7 @@ export function SidebarEventSelector({
   const navigate = useNavigate()
   const { t } = useTranslation('events')
   const { data: events } = useQuery(eventQueries.listByNamespace(namespace))
+  const hasEvents = events?.partialEvents.length !== 0
 
   const opts = events?.partialEvents.map((e) => ({
     label: e.name,
@@ -36,12 +38,15 @@ export function SidebarEventSelector({
 
   return (
     <div className={styles.contents}>
-      <WizardDropdown
-        placeholder={t('sidebar.selection.placeholder')}
-        onChange={handleSelect}
-        options={opts || []}
-        value={eventData?.slug}
-      />
+      <WizardTooltip disabled={hasEvents} label={t('sidebar.selection.empty')}>
+        <WizardDropdown
+          placeholder={t('sidebar.selection.placeholder')}
+          disabled={!hasEvents}
+          onChange={handleSelect}
+          options={opts || []}
+          value={eventData?.slug}
+        />
+      </WizardTooltip>
     </div>
   )
 }
