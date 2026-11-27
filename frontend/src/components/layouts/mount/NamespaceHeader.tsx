@@ -2,6 +2,7 @@ import type { JSX } from 'react/jsx-dev-runtime'
 import type { UserResponse } from '@/api/schemas/user'
 
 import { GoogleSpinner } from '../../ui/loaders/GoogleSpinner'
+import { TwemojiText } from '@/components/ui/TwemojiText'
 import { useTranslation } from 'react-i18next'
 import { eventQueries } from '@/api/services/event'
 import { useParams } from '@tanstack/react-router'
@@ -42,7 +43,7 @@ export function NamespaceHeader({ ownerData, isOwnerLoading }: NamespaceHeaderPr
         {currentStep === 'loading' && <GoogleSpinner />}
 
         {currentStep === 'namespace' && <span>{ownerData!.displayName}</span>}
-        {currentStep === 'event' && <span>{eventData!.name}</span>}
+        {currentStep === 'event' && <TwemojiText text={eventData!.name} />}
 
         {currentStep === 'fallback' && <span>{t('root.header.namespaces')}</span>}
       </div>
