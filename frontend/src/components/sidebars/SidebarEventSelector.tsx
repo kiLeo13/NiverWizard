@@ -39,13 +39,16 @@ export function SidebarEventSelector({
   return (
     <div className={styles.contents}>
       <WizardTooltip disabled={hasEvents} label={t('sidebar.selection.empty')}>
-        <WizardDropdown
-          placeholder={t('sidebar.selection.placeholder')}
-          disabled={!hasEvents}
-          onChange={handleSelect}
-          options={opts || []}
-          value={eventData?.slug}
-        />
+        {/* Dropdown must be wrapped in a generic div to avoid having its data-states overwritten */}
+        <div>
+          <WizardDropdown
+            placeholder={t('sidebar.selection.placeholder')}
+            disabled={!hasEvents}
+            onChange={handleSelect}
+            options={opts || []}
+            value={eventData?.slug}
+          />
+        </div>
       </WizardTooltip>
     </div>
   )
