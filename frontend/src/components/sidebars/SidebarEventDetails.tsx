@@ -10,7 +10,7 @@ import { FaCrown } from 'react-icons/fa'
 import { useQuery } from '@tanstack/react-query'
 import { userQueries } from '@/api/services/user'
 import { useTranslation } from 'react-i18next'
-import { fmtDatetime, fmtTime, isDateToday } from '@/utils/datetimeUtils'
+import { fmtDatetime, fmtTime, isDatePast, isDateToday } from '@/utils/datetimeUtils'
 
 import styles from './SidebarEventDetails.module.css'
 
@@ -32,7 +32,11 @@ export function SidebarEventDetails({ event }: SidebarEventDetailsProps): JSX.El
   const isSelfOwner = event?.userRole === 'owner'
   const ownerName = isSelfOwner ? t('common:you') : ownerData?.displayName
   const isToday = isDateToday(event?.startsAt)
+  const isPast = isDatePast(event?.startsAt)
   const startTime = isToday ? fmtTime(event?.startsAt) : fmtDatetime(event?.startsAt)
+  const fmtStatus = isPast
+    ? t('events:sidebar.details.status.gone')
+    : t('events:sidebar.details.status.scheduled')
 
   return (
     <div className={styles.contents}>
@@ -42,6 +46,8 @@ export function SidebarEventDetails({ event }: SidebarEventDetailsProps): JSX.El
       />
 
       <DetailItem label={toDatetime(t, isToday)} value={startTime} />
+
+      <DetailItem label={t('events:sidebar.details.status.title')} value={event && fmtStatus} />
     </div>
   )
 }

@@ -19,7 +19,12 @@
     "details": {
       "title": "Detalhes",
       "time": "Hora",
-      "date": "Data"
+      "date": "Data",
+      "status": {
+        "title": "Status",
+        "gone": "Encerrado",
+        "scheduled": "Agendado"
+      }
     },
     "actions": {
       "title": "Interações",
