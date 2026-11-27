@@ -1,10 +1,11 @@
-import twemoji from 'twemoji'
+import type { JSX } from 'react/jsx-runtime'
 
-export function TwemojiIcon({ emoji }: { emoji: string }) {
-  const html = twemoji.parse(emoji, {
-    folder: 'svg',
-    ext: '.svg'
-  })
+import { TwemojiText } from '@/components/ui/TwemojiText'
 
-  return <span dangerouslySetInnerHTML={{ __html: html }} />
+type TwemojiIconProps = {
+  emoji: string
+}
+
+export function TwemojiIcon({ emoji }: TwemojiIconProps): JSX.Element {
+  return <TwemojiText text={emoji} />
 }
