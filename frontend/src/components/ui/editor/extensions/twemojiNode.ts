@@ -1,9 +1,5 @@
-import twemoji from 'twemoji'
-
 import { mergeAttributes, Node } from '@tiptap/core'
-
-const CDN_ROUTE = (codePoint: string) =>
-  `https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/${codePoint}.svg`
+import { resolveTwemojiSvgUrl } from '@/utils/twemojiUtils'
 
 export const TwemojiNode = Node.create({
   name: 'twemoji',
@@ -31,15 +27,20 @@ export const TwemojiNode = Node.create({
   },
 
   renderHTML({ HTMLAttributes }) {
-    const codePoint = twemoji.convert.toCodePoint(HTMLAttributes['data-emoji'])
+    const emoji = String(HTMLAttributes['data-emoji'] ?? '')
+    const src = resolveTwemojiSvgUrl(emoji)
+
+    if (!src) {
+      return ['span', mergeAttributes(HTMLAttributes), emoji]
+    }
 
     return [
       'img',
       mergeAttributes(HTMLAttributes, {
         class: 'emoji',
         draggable: 'false',
-        src: CDN_ROUTE(codePoint),
-        alt: HTMLAttributes['data-emoji']
+        src,
+        alt: emoji
       })
     ]
   }
