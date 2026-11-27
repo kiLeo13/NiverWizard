@@ -5,6 +5,7 @@ import clsx from 'clsx'
 
 import { FiChevronDown, FiCheck, FiSearch } from 'react-icons/fi'
 import { useTranslation } from 'react-i18next'
+import { TwemojiText } from '../TwemojiText'
 
 import styles from './WizardDropdown.module.css'
 
@@ -135,7 +136,9 @@ export const WizardDropdown = forwardRef<HTMLButtonElement, WizardDropdownProps>
                       <span className={styles.itemIcon}>{selectedOption.icon}</span>
                     )}
 
-                    <span>{selectedOption.label}</span>
+                    <span className={styles.label}>
+                      <TwemojiText text={selectedOption.label} />
+                    </span>
                   </>
                 ) : (
                   <span className={styles.placeholder}>{placeholder || ''}</span>
@@ -187,7 +190,9 @@ export const WizardDropdown = forwardRef<HTMLButtonElement, WizardDropdownProps>
                     <div className={styles.itemLeft}>
                       {option.icon && <span className={styles.itemIcon}>{option.icon}</span>}
 
-                      <span>{option.label}</span>
+                      <span className={styles.label}>
+                        <TwemojiText text={option.label} />
+                      </span>
                     </div>
 
                     {value === option.value && <FiCheck className={styles.checkIcon} />}

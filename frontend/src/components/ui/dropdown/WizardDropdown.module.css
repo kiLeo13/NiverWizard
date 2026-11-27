@@ -38,7 +38,15 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
   overflow: hidden;
+}
+
+.label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .placeholder {
@@ -152,11 +160,13 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
 }
 
 .checkIcon {
   color: white;
   font-size: 14px;
+  flex-shrink: 0;
 }
 
 .noResults {
